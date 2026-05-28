@@ -1,0 +1,6 @@
+rank	gene	gene_symbol	cell_type	prediction_score	prediction_type
+1	GENE:LST1	LST1	L3:Microglia	-3.865532875061035	marker_gene
+2	GENE:NCKAP1L	NCKAP1L	L3:Microglia	-4.236631393432617	marker_gene
+3	GENE:OLR1	OLR1	L3:Microglia	-4.265748023986816	marker_gene
+4	GENE:C1QC	C1QC	L3:Microglia	-4.363625526428223	marker_gene
+5	GENE:ALOX5	ALOX5	L3:Microglia	-4.399528503417969	marker_gene

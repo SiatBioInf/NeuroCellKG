@@ -1,0 +1,4 @@
+Gene,KGE_Novel_Rank,KGE_Global_Rank,KGE_Score,Known_Regulated_Cells,Total_DR_genes,Significant_DR_genes,Top_DR_gene,Status
+FMR1,6,763,-5.755,Astrocyte; Bergmann glial cell; Excitatory neuron; Hippocampal CA1 PN; LAMP5+ interneuron; NSC; Radial glial cell,3001,27,MT-RNR1,OK
+PTEN,26,787,-6.113,Cerebellar inhibitory neuron; Hippocampal DG granule cell; LAMP5+ interneuron; NSC; Pericyte,3001,20,AFTPH,OK
+FKBP5,38,801,-6.197,Astrocyte; Fibroblast,3001,18,AFTPH,OK

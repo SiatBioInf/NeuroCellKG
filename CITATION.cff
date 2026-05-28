@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Neural Cell Knowledge Graph"
+type: dataset
+authors:
+  - given-names: Chuangyu
+    family-names: Chen
+  - given-names: Xiaomin
+    family-names: Ni
+  - given-names: Yang
+    family-names: Min
+  - given-names: Zhen
+    family-names: Wang
+  - given-names: Zhilan
+    family-names: Xu
+  - given-names: Yang
+    family-names: Zhang
+  - given-names: Hao
+    family-names: Yu
+    email: hao.yu@siat.ac.cn
+repository-code: "https://github.com/SiatBioInf/neural-cell-knowledge-graph"
+abstract: >-
+  A hierarchical multimodal knowledge graph for neural cell-type-specific
+  regulation integrating single-cell transcriptomics and literature evidence.
+keywords:
+  - knowledge graph
+  - neural cells
+  - single-cell transcriptomics
+  - literature mining
+  - knowledge graph embedding
+license: MIT
+version: 1.0.0
+date-released: "2026-05-16"

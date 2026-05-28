@@ -1,0 +1,6 @@
+pykeen==1.10.2
+class_resolver<0.5.0
+pandas==2.2.2
+numpy==1.26.4
+scikit-learn==1.5.1
+torch>=2.1.0

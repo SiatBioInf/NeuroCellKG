@@ -1,0 +1,32 @@
+# Data files
+*.pkl
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.eggs/
+*.egg-info/
+dist/
+build/
+
+# Neo4j
+neo4j_export/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model outputs (too large for repo)
+outputs/
+*.pkl
+
+# Environment
+.env
+venv/

@@ -1,0 +1,6 @@
+rank	factor	factor_name	cell_type	prediction_score	prediction_type
+1	FACTOR:SAA PROTEIN TREATMENT	SAA PROTEIN TREATMENT	L3:Microglia	-2.8179218769073486	regulating_factor
+2	FACTOR:OPIOID RECEPTOR AGONISTS	OPIOID RECEPTOR AGONISTS	L3:Microglia	-2.844033718109131	regulating_factor
+3	FACTOR:TAK242	TAK242	L3:Microglia	-2.852125644683838	regulating_factor
+4	FACTOR:YHV98-4	YHV98-4	L3:Microglia	-2.904074192047119	regulating_factor
+5	FACTOR:GSI-953	GSI-953	L3:Microglia	-2.927166223526001	regulating_factor

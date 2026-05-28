@@ -1,0 +1,149 @@
+# LLM Prompts for Neural Regulatory Triple Extraction
+
+This document contains the prompt templates used for extracting neural regulatory triples from PubMed abstracts.
+
+## Extraction Pipeline
+
+The extraction pipeline consists of two stages:
+1. **Screening**: Filter PubMed abstracts for relevance
+2. **Extraction**: Extract structured perturbation-effect relationships
+
+Both stages use the S1-Base-Ultra model (provided by China Science and Technology Cloud) with temperature=0.
+
+---
+
+## Stage 1: Screening Prompt
+
+### System Prompt
+
+```
+You are a strict biomedical screener. Answer only in JSON.
+```
+
+### User Prompt Template
+
+```
+You are an expert in neuroscience and molecular biology. Evaluate whether the PubMed abstract explicitly reports ALL of the following:
+
+1. The specified neural cell type: the abstract MUST explicitly mention at least ONE term from this list:
+   [{CELL_TERMS}]
+   (These are synonyms/aliases for the target cell type.)
+2. A molecular, environmental, or other factor that acts directly on this cell (e.g., gene knockout, drug, cytokine, pathway modulation).
+3. A clear molecular or cellular change occurring in that same cell (e.g., up-regulation of X, reduced migration, activation of pathway Y).
+
+⚠️ STRICT RULES
+- Use only information explicitly stated in the abstract.
+- Do not infer, generalize, or assume.
+- Cell type must be explicitly mentioned using at least one term in the provided list.
+- If any one of the three criteria is missing or ambiguous, mark as irrelevant.
+
+Return ONLY the following valid JSON, with no additional text:
+{"pmid": "{PMID}", "relevant": true}
+or
+{"pmid": "{PMID}", "relevant": false}
+
+Abstract:
+\"\"\"{ABSTRACT}\"\"\"
+```
+
+---
+
+## Stage 2: Extraction Prompt
+
+### System Prompt
+
+```
+You are a biomedical knowledge extraction expert. Extract structured information about cellular perturbation experiments.
+```
+
+### User Prompt
+
+```
+**STRICTLY extract information ONLY from the abstract provided below.**
+**DO NOT invent, infer, assume, or paraphrase any information not explicitly stated in the abstract.**
+
+Your task is to extract explicit experimental perturbation → cellular/molecular effect relationships.
+A "perturbation" is any deliberate intervention applied to cells (biological molecules, genetic manipulations, drugs, nutrients, physical factors, etc.).
+
+**CRITICAL RULE**: Each record must describe ONE perturbation and ONE downstream effect only.
+If a sentence contains multiple effects or multiple perturbations → split into multiple records.
+
+---
+############################################################
+### Output Schema (JSON list, every field MUST be filled) ###
+############################################################
+- PMID: string (the publication ID, if not provided use "unknown")
+- factor_name: exact name of the perturbing factor as it appears (e.g., "TNF-α", "cisplatin", "glucose deprivation", "CRISPR-Cas9 knockout of TP53", "hypoxia")
+- factor_type_level1: exactly one of ["Biological", "Chemical", "Physical"]
+- factor_type_level2: MUST use one of the controlled terms below
+- perturbation_action: e.g., treatment, knockout/KO, knockdown, overexpression/OE, transfection, infection, irradiation, exposure, deprivation, etc.
+- cell_type: specific cell type/line/population (e.g., "HeLa cells", "primary microglia", "neural stem cells"). Must NOT be tissue or organism. If unknown → "null"
+- effect: the exact downstream cellular or molecular change (e.g., "increased IL-6 production", "decreased Bcl-2 expression", "enhanced AMPK phosphorylation", "suppressed MAPK signaling")
+- effect_direction: 1 (increase/activation), -1 (decrease/inhibition), null (if impossible to determine)
+- evidence_sentence: the exact sentence(s) from the abstract that support this extraction
+- confidence_score: 1–10 (10 = explicit causal language like "induces", "leads to", "suppresses"; 5–7 = moderately clear; 1–4 = weak/implied)
+
+---
+############################################################
+### Controlled Vocabulary for factor_type_level2 ###
+############################################################
+Biological Factors
+- Biological Signaling Molecules          (cytokines, growth factors, chemokines, hormones, recombinant proteins, etc.)
+- Cellular Interactions                  (co-culture, conditioned medium when no specific molecule named)
+- Microbiome                             (LPS, viral/bacterial infection, MOI, supernatant, etc.)
+- Genetic and Molecular Perturbations    (CRISPR KO/OE, si/shRNA, plasmid transfection, etc.)
+
+Chemical Factors
+- Pharmacological and Small-Molecule Perturbations
+- Metabolic and Nutrient Stress          (glucose/serum/amino-acid deprivation, etc.)
+- Metal Ions                             (iron overload, zinc deficiency, cadmium, etc.)
+
+Physical Factors
+- Environment                            (hypoxia, heat shock, cold, pH change, osmotic stress, etc.)
+- Mechanical Factors                     (stretch, shear stress, substrate stiffness, etc.)
+- Radiation and Energy Stress            (UV, gamma, X-ray, laser, etc.)
+
+---
+############################################################
+### High-Quality Examples ###
+############################################################
+Example 1 – Biological Signaling Molecules
+"TNF-α treatment significantly increased IL-6 production in primary microglia."
+→ {"PMID":"unknown","factor_name":"TNF-α","factor_type_level1":"Biological","factor_type_level2":"Biological Signaling Molecules","perturbation_action":"treatment","cell_type":"primary microglia","effect":"increased IL-6 production","effect_direction":1,"evidence_sentence":"TNF-α treatment significantly increased IL-6 production in primary microglia.","confidence_score":10}
+
+Example 2 – Genetic and Molecular Perturbations
+"CRISPR knockout of TP53 reduced apoptosis in neural stem cells."
+→ {"PMID":"unknown","factor_name":"TP53 knockout","factor_type_level1":"Biological","factor_type_level2":"Genetic and Molecular Perturbations","perturbation_action":"KO","cell_type":"neural stem cells","effect":"reduced apoptosis","effect_direction":-1,"evidence_sentence":"CRISPR knockout of TP53 reduced apoptosis in neural stem cells.","confidence_score":10}
+
+Example 3 – Pharmacological and Small-Molecule Perturbations
+"Cisplatin treatment decreased Bcl-2 expression in HeLa cells."
+→ {"PMID":"unknown","factor_name":"cisplatin","factor_type_level1":"Chemical","factor_type_level2":"Pharmacological and Small-Molecule Perturbations","perturbation_action":"treatment","cell_type":"HeLa cells","effect":"decreased Bcl-2 expression","effect_direction":-1,"evidence_sentence":"Cisplatin treatment decreased Bcl-2 expression in HeLa cells.","confidence_score":10}
+
+Example 4 – Metabolic and Nutrient Stress
+"Glucose deprivation enhanced AMPK phosphorylation in hepatocytes."
+→ {"PMID":"unknown","factor_name":"glucose deprivation","factor_type_level1":"Chemical","factor_type_level2":"Metabolic and Nutrient Stress","perturbation_action":"deprivation","cell_type":"hepatocytes","effect":"enhanced AMPK phosphorylation","effect_direction":1,"evidence_sentence":"Glucose deprivation enhanced AMPK phosphorylation in hepatocytes.","confidence_score":10}
+
+Example 5 – Environment (Physical)
+"Hypoxia increased VEGF secretion in endothelial cells."
+→ {"PMID":"unknown","factor_name":"hypoxia","factor_type_level1":"Physical","factor_type_level2":"Environment","perturbation_action":"exposure","cell_type":"endothelial cells","effect":"increased VEGF secretion","effect_direction":1,"evidence_sentence":"Hypoxia increased VEGF secretion in endothelial cells.","confidence_score":10}
+
+Example 6 – Radiation and Energy Stress
+"UV irradiation suppressed MAPK signaling in keratinocytes."
+→ {"PMID":"unknown","factor_name":"UV irradiation","factor_type_level1":"Physical","factor_type_level2":"Radiation and Energy Stress","perturbation_action":"irradiation","cell_type":"keratinocytes","effect":"suppressed MAPK signaling","effect_direction":-1,"evidence_sentence":"UV irradiation suppressed MAPK signaling in keratinocytes.","confidence_score":10}
+
+---
+############################################################
+### Final Rules (NON-NEGOTIABLE) ###
+############################################################
+1. Extract ONLY explicit experimental interventions and their direct effects.
+2. Never extract correlations, disease states, or observations without a clear applied perturbation.
+3. Use exact wording from the abstract whenever possible.
+4. If no valid perturbation–effect pair exists → return []
+5. Output must be a valid JSON list of objects (no extra text, no markdown).
+6. If the specific cell type is not mentioned, ignore this perturbation information.
+
+Abstract to analyze:
+{ABSTRACT}
+
+Output ONLY the JSON list:
+```

@@ -1,0 +1,76 @@
+child,parent,relation_type
+Amygdala excitatory neuron,Excitatory neuron,BELONGS_TO
+Astrocyte,Astrocyte,BELONGS_TO
+Bergmann glial cell,Astrocyte,BELONGS_TO
+Central nervous system macrophage,Macrophage,BELONGS_TO
+Cerebellar inhibitory neuron,Inhibitory neuron,BELONGS_TO
+CGE-derived interneuron,Interneuron,BELONGS_TO
+Chandelier cell,Interneuron,BELONGS_TO
+Choroid plexus epithelial cell,Epithelial cell,BELONGS_TO
+Committed oligodendrocyte precursor,Oligodendrocyte precursor,BELONGS_TO
+Cortical deep-layer corticothalamic neuron,Cortical neuron,BELONGS_TO
+Cortical deep-layer intratelencephalic neuron,Cortical neuron,BELONGS_TO
+Cortical deep-layer near-projecting neuron,Cortical neuron,BELONGS_TO
+Eccentric medium spiny neuron,Medium spiny neuron,BELONGS_TO
+Endothelial cell,Endothelial cell,BELONGS_TO
+Ependymal cell,Ependymal cell,BELONGS_TO
+Fibroblast,Fibroblast,BELONGS_TO
+Hilar mossy cell,Granule cell,BELONGS_TO
+Hippocampal CA1 pyramidal neuron,Pyramidal neuron,BELONGS_TO
+Hippocampal CA2 pyramidal neuron,Pyramidal neuron,BELONGS_TO
+Hippocampal CA3 pyramidal neuron,Pyramidal neuron,BELONGS_TO
+Hippocampal dentate gyrus granule cell,Granule cell,BELONGS_TO
+Interneuron,Interneuron,BELONGS_TO
+Medium spiny neuron,Medium spiny neuron,BELONGS_TO
+MGE-derived interneuron,Interneuron,BELONGS_TO
+Microglia,Microglia,BELONGS_TO
+Midbrain-derived inhibitory neuron,Inhibitory neuron,BELONGS_TO
+Neural crest cell,Neural crest cell,BELONGS_TO
+Neuroblast (Vertebrate),Neuroblast,BELONGS_TO
+Neuroplacodal cell,Neuroplacodal cell,BELONGS_TO
+Oligodendrocyte,Oligodendrocyte,BELONGS_TO
+Oligodendrocyte precursor cell,Oligodendrocyte precursor,BELONGS_TO
+Pericyte,Pericyte,BELONGS_TO
+Radial glial cell,Radial glial cell,BELONGS_TO
+Thalamic excitatory neuron,Excitatory neuron,BELONGS_TO
+Vascular smooth muscle cell,Smooth muscle cell,BELONGS_TO
+Substantia nigra dopaminergic neuron,Dopaminergic neuron,BELONGS_TO
+Basal forebrain cholinergic neuron,Cholinergic neuron,BELONGS_TO
+Dorsal raphe serotonergic neuron,Serotonergic neuron,BELONGS_TO
+Dorsal root ganglion neuron,Sensory neuron,BELONGS_TO
+Polydendrocyte (NG2 glia),NG2 glia,BELONGS_TO
+Neural stem cell,Neural stem cell,BELONGS_TO
+Dura cell,Meningeal cell,BELONGS_TO
+arachnoid cell,Meningeal cell,BELONGS_TO
+pia cell,Meningeal cell,BELONGS_TO
+Vascular endothelial progenitor cell,Vascular endothelial progenitor,BELONGS_TO
+Excitatory neuron,Neuron,PART_OF
+Astrocyte,Glial cell,PART_OF
+Macrophage,Glial cell,PART_OF
+Inhibitory neuron,Neuron,PART_OF
+Interneuron,Neuron,PART_OF
+Epithelial cell,Non-neural cell of nervous system,PART_OF
+Oligodendrocyte precursor,Progenitor,PART_OF
+Cortical neuron,Neuron,PART_OF
+Medium spiny neuron,Neuron,PART_OF
+Endothelial cell,Non-neural cell of nervous system,PART_OF
+Ependymal cell,Non-neural cell of nervous system,PART_OF
+Fibroblast,Non-neural cell of nervous system,PART_OF
+Granule cell,Neuron,PART_OF
+Pyramidal neuron,Neuron,PART_OF
+Microglia,Glial cell,PART_OF
+Neural crest cell,Progenitor,PART_OF
+Neuroblast,Progenitor,PART_OF
+Neuroplacodal cell,Progenitor,PART_OF
+Oligodendrocyte,Glial cell,PART_OF
+Pericyte,Non-neural cell of nervous system,PART_OF
+Radial glial cell,Progenitor,PART_OF
+Smooth muscle cell,Non-neural cell of nervous system,PART_OF
+Dopaminergic neuron,Neuron,PART_OF
+Cholinergic neuron,Neuron,PART_OF
+Serotonergic neuron,Neuron,PART_OF
+Sensory neuron,Neuron,PART_OF
+NG2 glia,Glial cell,PART_OF
+Neural stem cell,Progenitor,PART_OF
+Meningeal cell,Non-neural cell of nervous system,PART_OF
+Vascular endothelial progenitor,Non-neural cell of nervous system,PART_OF

@@ -184,7 +184,7 @@ If you use this knowledge graph or code in your research, please cite:
 ```bibtex
 @article{chen2025neural,
   title={A hierarchical multimodal knowledge graph for neural cell-type-specific regulation integrating single-cell transcriptomics and literature evidence},
-  author={Chen, Chuangyu and Ni, Xiaomin and Yang, Min and Wang, Zhen and Xu, Zhilan and Zhang, Yang and Yu, Hao},
+  author={Chen, Chuangyu and Ni, Xiaomin and Min, Yang and Wang, Zhen and Xu, Zhilan and Zhang, Yang and Yu, Hao},
   journal={[Journal Name]},
   year={2025},
   note={In preparation}

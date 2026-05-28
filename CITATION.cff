@@ -18,7 +18,7 @@ authors:
   - given-names: Hao
     family-names: Yu
     email: hao.yu@siat.ac.cn
-repository-code: "https://github.com/SiatBioInf/neural-cell-knowledge-graph"
+repository-code: "https://github.com/SiatBioInf/NeuroCellKG"
 abstract: >-
   A hierarchical multimodal knowledge graph for neural cell-type-specific
   regulation integrating single-cell transcriptomics and literature evidence.

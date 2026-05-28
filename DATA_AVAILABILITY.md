@@ -4,7 +4,7 @@
 
 All source code for knowledge graph construction and knowledge graph embedding (KGE) model training is publicly available at:
 
-**GitHub Repository**: https://github.com/SiatBioInf/neural-cell-knowledge-graph
+**GitHub Repository**: https://github.com/SiatBioInf/NeuroCellKG
 
 The repository includes:
 - Knowledge graph construction pipeline (cell hierarchy, marker gene, and regulatory triple import to Neo4j)

@@ -1,0 +1,11 @@
+rank	gene	gene_symbol	cell_type	prediction_score	prediction_type	factor	factor_name
+1	GENE:LST1	LST1	L3:Microglia	-3.865532875061035	marker_gene		
+2	GENE:NCKAP1L	NCKAP1L	L3:Microglia	-4.236631393432617	marker_gene		
+3	GENE:OLR1	OLR1	L3:Microglia	-4.265748023986816	marker_gene		
+4	GENE:C1QC	C1QC	L3:Microglia	-4.363625526428223	marker_gene		
+5	GENE:ALOX5	ALOX5	L3:Microglia	-4.399528503417969	marker_gene		
+1			L3:Microglia	-2.8179218769073486	regulating_factor	FACTOR:SAA PROTEIN TREATMENT	SAA PROTEIN TREATMENT
+2			L3:Microglia	-2.844033718109131	regulating_factor	FACTOR:OPIOID RECEPTOR AGONISTS	OPIOID RECEPTOR AGONISTS
+3			L3:Microglia	-2.852125644683838	regulating_factor	FACTOR:TAK242	TAK242
+4			L3:Microglia	-2.904074192047119	regulating_factor	FACTOR:YHV98-4	YHV98-4
+5			L3:Microglia	-2.927166223526001	regulating_factor	FACTOR:GSI-953	GSI-953

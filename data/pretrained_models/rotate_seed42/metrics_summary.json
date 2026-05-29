@@ -1,0 +1,8 @@
+{
+  "model": "RotatE",
+  "seed": 42,
+  "both.realistic.mrr": 0.3724961280822754,
+  "both.realistic.hits_at_1": 0.32275132275132273,
+  "both.realistic.hits_at_3": 0.38492063492063494,
+  "both.realistic.hits_at_10": 0.4656084656084656
+}

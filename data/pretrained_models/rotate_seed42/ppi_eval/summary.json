@@ -1,0 +1,16 @@
+{
+  "model": "rotate_seed42",
+  "n_test_triples": 916,
+  "n_skipped": 0,
+  "gene_pool_size": 799,
+  "mrr_both": 0.30411,
+  "hits_at_1_both": 0.126638,
+  "hits_at_3_both": 0.400655,
+  "hits_at_10_both": 0.649563,
+  "mrr_head": 0.304646,
+  "hits_at_1_head": 0.127729,
+  "hits_at_10_head": 0.648472,
+  "mrr_tail": 0.303575,
+  "hits_at_1_tail": 0.125546,
+  "hits_at_10_tail": 0.650655
+}

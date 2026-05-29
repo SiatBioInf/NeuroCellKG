@@ -37,6 +37,12 @@ neural-cell-knowledge-graph/
 │   │   ├── train.txt                  # Training triples
 │   │   ├── valid.txt                  # Validation triples
 │   │   └── test.txt                   # Test triples
+│   ├── pretrained_models/
+│   │   └── rotate_seed42/             # Pretrained RotatE model (best performing)
+│   │       ├── trained_model.pkl      # Model weights (load directly to reproduce results)
+│   │       ├── training_triples/      # Entity/relation vocabulary
+│   │       ├── metrics.json           # Full PyKEEN evaluation metrics
+│   │       └── results.json           # Detailed training results
 │   ├── kge_results/
 │   │   ├── model_comparison.csv       # Cross-model REGULATES link prediction results
 │   │   ├── rotate_summary.json        # RotatE REGULATES evaluation details
@@ -91,61 +97,119 @@ pip install neo4j
 
 ## Quick Start
 
-### 1. Explore the Data
+We provide **two usage paths**:
+
+- **Path A — Verify published results (fast, no GPU/training required).**
+  Use the released pretrained RotatE model in `data/pretrained_models/rotate_seed42/`
+  to directly reproduce all link-prediction numbers reported in the manuscript.
+- **Path B — Full reproduction from scratch.**
+  Re-build the knowledge graph from raw data, generate splits, train KGE models,
+  and re-evaluate. Recommended only if you want to retrain or modify the pipeline.
+
+---
+
+### Path A — Verify Published Results (Recommended for Reviewers)
+
+The repository ships with the trained RotatE model (`rotate_seed42`, the best
+performing model reported in the paper). You can reproduce all reported metrics
+**without any training**.
+
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Reproduce REGULATES link-prediction metrics (Table X)
+python scripts/kge_training/evaluate_regulates_lp.py \
+    --model-dir data/pretrained_models/rotate_seed42 \
+    --test      data/kge_splits/test.txt \
+    --train     data/kge_splits/train.txt \
+    --valid     data/kge_splits/valid.txt
+
+# 3. Reproduce marker-gene retrieval metrics
+python scripts/kge_training/evaluate_marker_retrieval.py \
+    --model-dir     data/pretrained_models/rotate_seed42 \
+    --train-triples data/kge_splits/train.txt
+
+# 4. (Optional) Inspect the Microglia case study predictions
+ls data/kge_results/microglia_*.tsv
+```
+
+Outputs (MRR, Hits@1/3/10, per-cell breakdown, etc.) will be written next to the
+model under `data/pretrained_models/rotate_seed42/regulates_eval/` and can be
+compared directly against the values reported in the manuscript.
+
+---
+
+### Path B — Full Reproduction from Scratch
+
+This path rebuilds everything end-to-end.
+
+#### Step 1. Explore the raw data
 
 ```python
 import pandas as pd
 
-# Load cell hierarchy
-cells = pd.read_csv('data/cell_hierarchy/neural_cells.csv')
-
-# Load regulatory triples
+cells   = pd.read_csv('data/cell_hierarchy/neural_cells.csv')
 triples = pd.read_csv('data/regulatory_triples/regulatory_triples.tsv', sep='\t')
-
-# Load marker genes
-markers = pd.read_csv('data/molecular_fingerprints/marker_genes.tsv', sep='\t')
-
-# Load PPI
-ppi = pd.read_csv('data/ppi/string_ppi.tsv', sep='\t')
+markers = pd.read_csv('data/molecular_fingerprints/marker_genes.tsv',  sep='\t')
+ppi     = pd.read_csv('data/ppi/string_ppi.tsv',                       sep='\t')
 ```
 
-### 2. Train KGE Models
+#### Step 2. (Optional) Re-import the KG into Neo4j
+
+This step is only needed if you want a Neo4j-backed graph for interactive
+exploration. It is **not** required for the KGE / link-prediction evaluation.
 
 ```bash
-# Train RotatE model (best performing)
-python scripts/kge_training/train_pykeen_model.py \
-    --model RotatE \
-    --train data/kge_splits/train.txt \
-    --valid data/kge_splits/valid.txt \
-    --test data/kge_splits/test.txt \
-    --seed 42 \
-    --outdir outputs/rotate_seed42
+python scripts/kg_construction/import_hierarchy.py \
+    --uri bolt://localhost:7687 --user neo4j --password YOUR_PASSWORD
 
-# Evaluate REGULATES link prediction
+python scripts/kg_construction/import_marker_genes.py \
+    --uri bolt://localhost:7687 --user neo4j --password YOUR_PASSWORD
+
+# Export triples back out of Neo4j for KGE training
+python scripts/kg_construction/export_triples.py \
+    --uri bolt://localhost:7687 --user neo4j --password YOUR_PASSWORD
+```
+
+#### Step 3. (Optional) Re-generate transductive-safe train/valid/test splits
+
+The repo already ships pre-computed splits in `data/kge_splits/`. To regenerate
+them with a different seed or ratio:
+
+```bash
+python scripts/kge_training/split_triples.py \
+    --input  data/raw/triples_v6.tsv \
+    --outdir data/kge_splits
+```
+
+#### Step 4. Train a KGE model
+
+```bash
+python scripts/kge_training/train_pykeen_model.py \
+    --model  RotatE \
+    --train  data/kge_splits/train.txt \
+    --valid  data/kge_splits/valid.txt \
+    --test   data/kge_splits/test.txt \
+    --seed   42 \
+    --outdir outputs/rotate_seed42
+```
+
+#### Step 5. Evaluate your retrained model
+
+```bash
 python scripts/kge_training/evaluate_regulates_lp.py \
+    --model-dir outputs/rotate_seed42
+python scripts/kge_training/evaluate_marker_retrieval.py \
+    --model-dir outputs/rotate_seed42
+python scripts/kge_training/evaluate_ppi_lp.py \
     --model-dir outputs/rotate_seed42
 ```
 
-### 3. Import to Neo4j
+#### Step 6. Cross-model comparison (TransE / RotatE / ComplEx / TuckER)
 
 ```bash
-# Import cell hierarchy
-python scripts/kg_construction/import_hierarchy.py \
-    --uri bolt://localhost:7687 \
-    --user neo4j \
-    --password YOUR_PASSWORD
-
-# Import marker genes
-python scripts/kg_construction/import_marker_genes.py \
-    --uri bolt://localhost:7687 \
-    --user neo4j \
-    --password YOUR_PASSWORD
-
-# Export triples for KGE training
-python scripts/kg_construction/export_triples.py \
-    --uri bolt://localhost:7687 \
-    --user neo4j \
-    --password YOUR_PASSWORD
+python scripts/kge_training/compare_models.py
 ```
 
 ## Data Sources

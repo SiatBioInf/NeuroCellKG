@@ -44,15 +44,15 @@ Outputs
 
 Usage
 -----
-  python scripts/evaluate_marker_retrieval.py \\
+  python scripts/kge_training/evaluate_marker_retrieval.py \\
       --model-dir       outputs/rotate_seed42 \\
-      --triples         data/splits/test_marker.tsv \\
-      --train-triples   data/splits/train.tsv \\
+      --triples         data/kge_splits/test_marker.txt \\
+      --train-triples   data/kge_splits/train.txt \\
       --ks              5 10 20 30 \\
       --score-batch-size 512
 
   # Reproduce old (unfiltered) results for comparison:
-  python scripts/evaluate_marker_retrieval.py \\
+  python scripts/kge_training/evaluate_marker_retrieval.py \\
       --model-dir outputs/rotate_seed42 --no-filter
 """
 
@@ -77,13 +77,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--triples",
         type=Path,
-        default=Path("data/splits/test_marker.tsv"),
+        default=Path("data/kge_splits/test_marker.txt"),
         help="Held-out MARKER_OF triples produced by split_triples.py.",
     )
     parser.add_argument(
         "--train-triples",
         type=Path,
-        default=Path("data/splits/train.tsv"),
+        default=Path("data/kge_splits/train.txt"),
         help="Training triples used to build the filtered gene pool (MARKER_OF positives excluded).",
     )
     parser.add_argument(

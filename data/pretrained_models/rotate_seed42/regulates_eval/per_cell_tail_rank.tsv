@@ -1,0 +1,66 @@
+cell	n_test	mrr	hits_at_1	hits_at_10	median_rank
+L2:Pericyte	1	1.0	1.0	1.0	1
+L3:Oligodendrocyte	1	1.0	1.0	1.0	1
+L2:Neural crest cell	1	1.0	1.0	1.0	1
+L3:Neural stem cell	56	0.9481	0.946429	0.946429	1
+L2:Neural stem cell	54	0.910518	0.888889	0.925926	1
+L3:Midbrain-derived inhibitory neuron	2	0.666667	0.5	1.0	2
+L3:Astrocyte	17	0.642883	0.529412	0.882353	1
+L2:Interneuron	4	0.566071	0.5	0.75	2
+L2:Cortical neuron	1	0.5	0.0	1.0	2
+L1:Progenitor	1	0.5	0.0	1.0	2
+L3:Microglia	18	0.496517	0.333333	1.0	3
+L2:Microglia	5	0.414175	0.4	0.4	30
+L3:Fibroblast	4	0.410539	0.25	0.75	3
+L3:Oligodendrocyte precursor cell	9	0.358965	0.222222	0.666667	9
+L3:Radial glial cell	4	0.352679	0.25	0.5	13
+L3:Pericyte	8	0.352551	0.25	0.75	5
+L3:CGE-derived interneuron	1	0.333333	0.0	1.0	3
+L3:Bergmann glial cell	8	0.276797	0.0	0.75	3
+L2:Astrocyte	8	0.270889	0.125	0.375	23
+L2:Oligodendrocyte	2	0.264286	0.0	0.5	18
+L3:Hippocampal CA1 pyramidal neuron	13	0.263976	0.153846	0.461538	15
+L2:Sensory neuron	2	0.257576	0.0	0.5	34
+L3:Medium spiny neuron	5	0.251488	0.0	0.6	7
+L3:Neural crest cell	13	0.226072	0.076923	0.538462	8
+L3:Vascular endothelial progenitor cell	5	0.220818	0.2	0.2	35
+L3:Cerebellar inhibitory neuron	10	0.192446	0.1	0.6	9
+L2:Excitatory neuron	3	0.19188	0.0	0.333333	20
+L3:Vascular smooth muscle cell	4	0.188578	0.0	0.5	12
+L3:Amygdala excitatory neuron	2	0.181818	0.0	0.5	18
+L2:Pyramidal neuron	3	0.180426	0.0	0.333333	47
+L3:Polydendrocyte (NG2 glia)	3	0.177419	0.0	0.666667	6
+L3:Endothelial cell	3	0.175641	0.0	0.666667	5
+L3:Hippocampal CA3 pyramidal neuron	4	0.167433	0.0	0.25	14
+L3:Neuroblast (Vertebrate)	5	0.127778	0.0	0.6	10
+L3:Hippocampal dentate gyrus granule cell	6	0.12468	0.0	0.333333	21
+L3:LAMP5+ interneuron	17	0.123522	0.058824	0.294118	21
+L2:Granule cell	1	0.111111	0.0	1.0	9
+L1:Non-neural cell of nervous system	1	0.111111	0.0	1.0	9
+L3:Basal forebrain cholinergic neuron	2	0.107353	0.0	0.5	36
+L2:Fibroblast	2	0.081871	0.0	0.5	14
+L2:Oligodendrocyte precursor	6	0.078874	0.0	0.333333	15
+L2:Smooth muscle cell	1	0.076923	0.0	0.0	13
+L3:Thalamic excitatory neuron	5	0.074306	0.0	0.4	16
+L2:Medium spiny neuron	5	0.073086	0.0	0.2	17
+L3:Hilar mossy cell	1	0.071429	0.0	0.0	14
+L3:MGE-derived interneuron	2	0.069963	0.0	0.5	37
+L1:Neuron	2	0.054825	0.0	0.0	25
+L3:Dorsal root ganglion neuron	8	0.050589	0.0	0.125	27
+L2:Epithelial cell	1	0.047619	0.0	0.0	21
+L2:Neuroblast	1	0.045455	0.0	0.0	22
+L2:NG2 glia	4	0.040873	0.0	0.0	24
+L2:Ependymal cell	3	0.037465	0.0	0.0	28
+L2:Cholinergic neuron	2	0.03559	0.0	0.0	41
+L2:Radial glial cell	1	0.033333	0.0	0.0	30
+L1:Glial cell	5	0.030074	0.0	0.0	42
+L2:Neuroplacodal cell	3	0.026163	0.0	0.0	36
+L2:Macrophage	3	0.025533	0.0	0.0	47
+L2:Inhibitory neuron	4	0.02317	0.0	0.0	50
+L2:Serotonergic neuron	1	0.022727	0.0	0.0	44
+L2:Endothelial cell	5	0.020776	0.0	0.0	47
+L2:Dopaminergic neuron	2	0.019258	0.0	0.0	55
+L3:Ependymal cell	1	0.017857	0.0	0.0	56
+L2:Vascular endothelial progenitor	1	0.016949	0.0	0.0	59
+L3:Dorsal raphe serotonergic neuron	1	0.014085	0.0	0.0	71
+L3:pia cell	1	0.008929	0.0	0.0	112

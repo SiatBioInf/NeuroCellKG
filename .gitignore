@@ -1,5 +1,4 @@
 # Data files
-*.pkl
 *.log
 
 # Python
@@ -23,9 +22,10 @@ neo4j_export/
 .DS_Store
 Thumbs.db
 
-# Model outputs (too large for repo)
+# Model outputs (too large for repo) — but keep released pretrained model
 outputs/
 *.pkl
+!data/pretrained_models/**/*.pkl
 
 # Environment
 .env

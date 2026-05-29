@@ -1,0 +1,22 @@
+{
+  "model": "rotate_seed42",
+  "filtered_eval": true,
+  "num_cells_evaluated": 30,
+  "num_marker_triples_in_ground_truth": 320,
+  "full_gene_pool_size": 799,
+  "mean_gene_pool_size_per_cell": 732.6666666666666,
+  "mean_num_true_markers_per_cell": 10.666666666666666,
+  "mean_positive_rr_macro": 0.2213724321899283,
+  "precision@5_macro": 0.6933333333333335,
+  "recall@5_macro": 0.3686866809660928,
+  "overlap@5_macro": 3.466666666666667,
+  "precision@10_macro": 0.6466666666666666,
+  "recall@10_macro": 0.6453351876881288,
+  "overlap@10_macro": 6.466666666666667,
+  "precision@20_macro": 0.4416666666666667,
+  "recall@20_macro": 0.8435914058708177,
+  "overlap@20_macro": 8.833333333333334,
+  "precision@30_macro": 0.3111111111111111,
+  "recall@30_macro": 0.8818107600460543,
+  "overlap@30_macro": 9.333333333333334
+}

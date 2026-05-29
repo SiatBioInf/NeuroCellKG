@@ -1,0 +1,13 @@
+{
+  "model": "RotatE",
+  "seed": 42,
+  "embedding_dim": 256,
+  "epochs_max": 500,
+  "batch_size": 2048,
+  "learning_rate": 0.001,
+  "num_negs": 128,
+  "patience": 20,
+  "stopper_freq": 10,
+  "device": "cuda",
+  "train_v": "v6"
+}

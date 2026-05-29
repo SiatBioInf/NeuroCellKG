@@ -17,10 +17,10 @@ Outputs
 
 Usage
 -----
-  python scripts/evaluate_ppi_lp.py \\
+  python scripts/kge_training/evaluate_ppi_lp.py \\
       --model-dir  outputs/rotate_seed42 \\
-      --test       data/splits/test_ppi.tsv \\
-      --train      data/splits/train.tsv
+      --test       data/kge_splits/test_ppi.txt \\
+      --train      data/kge_splits/train.txt
 """
 
 from __future__ import annotations
@@ -41,10 +41,10 @@ def parse_args() -> argparse.Namespace:
         description="PPI link-prediction evaluation for train_v6."
     )
     parser.add_argument("--model-dir",  type=Path, default=Path("outputs/rotate_run"))
-    parser.add_argument("--test",       type=Path, default=Path("data/splits/test_ppi.tsv"))
-    parser.add_argument("--train",      type=Path, default=Path("data/splits/train.tsv"),
+    parser.add_argument("--test",       type=Path, default=Path("data/kge_splits/test_ppi.txt"))
+    parser.add_argument("--train",      type=Path, default=Path("data/kge_splits/train.txt"),
                         help="Used to build the filtered triple set.")
-    parser.add_argument("--valid",      type=Path, default=Path("data/splits/valid.tsv"),
+    parser.add_argument("--valid",      type=Path, default=Path("data/kge_splits/valid.txt"),
                         help="Also included in the filter set.")
     parser.add_argument("--outdir",     type=Path, default=None)
     parser.add_argument("--score-batch", type=int, default=1024,

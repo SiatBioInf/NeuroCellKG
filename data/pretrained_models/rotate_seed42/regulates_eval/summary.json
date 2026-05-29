@@ -1,0 +1,15 @@
+{
+  "model": "rotate_seed42",
+  "n_test_triples": 378,
+  "n_skipped": 0,
+  "mrr_both": 0.372408,
+  "hits_at_1_both": 0.322751,
+  "hits_at_3_both": 0.384921,
+  "hits_at_10_both": 0.465608,
+  "mrr_head": 0.299117,
+  "hits_at_1_head": 0.283069,
+  "hits_at_10_head": 0.320106,
+  "mrr_tail": 0.445699,
+  "hits_at_1_tail": 0.362434,
+  "hits_at_10_tail": 0.611111
+}

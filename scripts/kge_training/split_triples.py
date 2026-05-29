@@ -37,18 +37,18 @@ Key design decisions
 
 Output files
 ------------
-  data/splits/train.tsv           (REGULATES train + MARKER_OF train + PPI train + STRUCTURAL)
-  data/splits/valid.tsv           (REGULATES valid — used for KGE early stopping)
-  data/splits/test.tsv            (REGULATES test  — used for KGE evaluation)
-  data/splits/test_marker.tsv     (MARKER_OF holdout — used for retrieval eval)
-  data/splits/test_ppi.tsv        (INTERACTS_WITH holdout — used for PPI LP eval)
-  data/splits/split_stats.txt     (machine-readable provenance)
+  data/kge_splits/train.txt           (REGULATES train + MARKER_OF train + PPI train + STRUCTURAL)
+  data/kge_splits/valid.txt           (REGULATES valid — used for KGE early stopping)
+  data/kge_splits/test.txt            (REGULATES test  — used for KGE evaluation)
+  data/kge_splits/test_marker.txt     (MARKER_OF holdout — used for retrieval eval)
+  data/kge_splits/test_ppi.txt        (INTERACTS_WITH holdout — used for PPI LP eval)
+  data/kge_splits/split_stats.txt     (machine-readable provenance)
 
 Usage
 -----
   python scripts/split_triples.py \\
       --input  data/raw/triples_v6.tsv \\
-      --outdir data/splits \\
+      --outdir data/kge_splits \\
       --seed   42 \\
       --train-ratio          0.8 \\
       --valid-ratio          0.1 \\
@@ -73,7 +73,7 @@ def parse_args() -> argparse.Namespace:
         description="Transductive-safe train/valid/test split for train_v6."
     )
     parser.add_argument("--input",  type=Path, default=Path("data/raw/triples_v6.tsv"))
-    parser.add_argument("--outdir", type=Path, default=Path("data/splits"))
+    parser.add_argument("--outdir", type=Path, default=Path("data/kge_splits"))
     parser.add_argument("--seed",   type=int,  default=42)
     parser.add_argument("--train-ratio",          type=float, default=0.8)
     parser.add_argument("--valid-ratio",          type=float, default=0.1)
@@ -501,11 +501,11 @@ def main() -> None:
     (args.outdir / "split_stats.txt").write_text("\n".join(lines), encoding="utf-8")
 
     print("\nSplit completed.")
-    print(f"  train      : {len(train_df):>6}  -> data/splits/train.tsv")
-    print(f"  valid      : {len(valid_df):>6}  -> data/splits/valid.tsv  (REGULATES)")
-    print(f"  test       : {len(test_df):>6}  -> data/splits/test.tsv   (REGULATES)")
-    print(f"  test_marker: {len(test_marker_df):>6}  -> data/splits/test_marker.tsv")
-    print(f"  test_ppi   : {len(test_ppi_df):>6}  -> data/splits/test_ppi.tsv")
+    print(f"  train      : {len(train_df):>6}  -> data/kge_splits/train.txt")
+    print(f"  valid      : {len(valid_df):>6}  -> data/kge_splits/valid.txt  (REGULATES)")
+    print(f"  test       : {len(test_df):>6}  -> data/kge_splits/test.txt   (REGULATES)")
+    print(f"  test_marker: {len(test_marker_df):>6}  -> data/kge_splits/test_marker.txt")
+    print(f"  test_ppi   : {len(test_ppi_df):>6}  -> data/kge_splits/test_ppi.txt")
     print(f"\nTransductive sanity (must all be 0):")
     print(f"  valid unseen       : {final_valid_unseen}")
     print(f"  test unseen        : {final_test_unseen}")
